@@ -4,7 +4,7 @@ import { compareSync } from 'bcrypt';
 import { UserEntity } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { AuthInput } from './auth.input';
-import { AuthType } from './auth.type';
+import { AuthType, ContextType } from './auth.type';
 
 @Injectable()
 export class AuthService {
@@ -35,6 +35,17 @@ export class AuthService {
 
         return this.jwtService.signAsync( { username: user.name, sub: user.id })
     
+    }
+
+    async getPayload(context: ContextType) {
+
+        const bearerToken = context.req.headers.authorization;
+        const token = bearerToken.split(' ')[1]; // Remove a palavra "Bearer" do token
+        const payload = this.jwtService.decode(token);
+    
+        return payload;
+
+
     }
 
 }

@@ -3,11 +3,11 @@ version: '3'
 services:
   db:
     image: postgres
-    container_name: place-database-api
+    container_name: event-project-database
     environment:
       POSTGRES_USER: "root"
       POSTGRES_PASSWORD: "root"
-      POSTGRES_DB: db
+      POSTGRES_DB: event-project-database
       PGDATA: /tmp
     ports:
       - "5432:5432"

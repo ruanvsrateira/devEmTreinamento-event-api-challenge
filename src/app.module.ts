@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { EventEntity } from './event/event.entity';
 import { EventModule } from './event/event.module';
+import { SubscriptionEntity } from './subscription/subscription.entity';
+import { SubscriptionModule } from './subscription/subscription.module';
 import { UserEntity } from './user/user.entity';
 import { UserModule } from './user/user.module';
 
@@ -17,8 +19,8 @@ import { UserModule } from './user/user.module';
       port: 5432,
       username: 'root',
       password: 'root',
-      database: 'db',
-      entities: [UserEntity, EventEntity],
+      database: 'event-project-database',
+      entities: [UserEntity, EventEntity, SubscriptionEntity],
       synchronize: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -26,7 +28,7 @@ import { UserModule } from './user/user.module';
       autoSchemaFile: true,
       context: ({ req }) => ({ req }),
     }),
-    UserModule, AuthModule, EventModule
+    UserModule, AuthModule, EventModule, SubscriptionModule
   ],
 })
 export class AppModule {}

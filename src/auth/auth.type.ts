@@ -11,3 +11,13 @@ export class AuthType {
     token: string
 
 }
+
+export class ContextType {
+
+    req: {
+        headers: {
+            authorization: string
+        }
+    }
+
+}

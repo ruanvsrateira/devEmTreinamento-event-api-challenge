@@ -1,15 +1,16 @@
 import { Entity, CreateDateColumn, UpdateDateColumn, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 import { ObjectType, Field, HideField, ID } from '@nestjs/graphql'
-import { hashPasswordTransform } from 'src/utils/hashPasswordTransform.util';
+import { hashSync } from 'bcrypt';
+import { hashPasswordTransform } from 'src/utils/hashPasswordTransform';
 
 @ObjectType()
 @Entity()
 export class UserEntity {
 
-    @Field(() => ID)
+    @Field(() => String)
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    id: string;
 
     @Field()
     @Column()

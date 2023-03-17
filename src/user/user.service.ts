@@ -16,7 +16,7 @@ export class UserService {
         return await this.userRepository.find({})
     }
 
-    async findById(id: number) {
+    async findById(id: UserEntity["id"]) {
         
         const user = await this.userRepository.findOne({ where: { id } });
 
@@ -41,6 +41,10 @@ export class UserService {
         if(userExists) 
             throw new BadRequestException("This already used by other user")
 
-        return await this.userRepository.save(data);
+        return await this.userRepository.save({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+        });
     }
 }

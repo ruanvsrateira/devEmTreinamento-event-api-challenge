@@ -14,7 +14,7 @@ import { JwtStrategy } from './jwt.strategy';
             useFactory: () => ({
                 secret: "ruan",
                 signOptions: {
-                    expiresIn: "30s"
+                    expiresIn: "1200s"
                 }
             })
         })

@@ -5,9 +5,9 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 @Entity()
 export class EventEntity {
 
-    @Field(() => ID)
+    @Field(() => String)
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    id: string;
 
     @Field()
     @Column()
