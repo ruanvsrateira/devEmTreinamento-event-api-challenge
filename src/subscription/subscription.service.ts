@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { EventEntity } from "src/event/event.entity";
 import { Repository } from "typeorm";
@@ -40,7 +40,15 @@ export class SubscriptionService {
         if(!eventExists)
             throw new NotFoundException('Not founded event by this id')
 
-        return await this.subscriptionRepository.save(data);
+        if(eventExists.startDateRegistration <= new Date() && eventExists.endDateRegistration >= new Date()) {
+
+            return await this.subscriptionRepository.save(data)
+
+        } else {
+
+            throw new BadRequestException('Invalid Date registration')
+
+        }
 
     }
 
