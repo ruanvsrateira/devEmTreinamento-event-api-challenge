@@ -11,9 +11,9 @@ import { SubscriptionService } from "./subscription.service";
         TypeOrmModule.forFeature([SubscriptionEntity, EventEntity]),
         JwtModule.registerAsync({
             useFactory: () => ({
-                secret: 'ruan',
+                secret: process.env.JWT_SECRET,
                 signOptions: {
-                    expiresIn: '1200s',
+                    expiresIn: process.env.JWT_EXPIRES_IN,
                 },
             }),
         }),

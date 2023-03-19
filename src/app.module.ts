@@ -1,6 +1,7 @@
 import { ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloDriver } from '@nestjs/apollo/dist/drivers';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
@@ -13,13 +14,16 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'root',
-      password: 'root',
-      database: 'event-project-database',
+      type: process.env.DATABASE_DIALECT as "postgres",
+      host: process.env.DATABASE_HOST,
+      port: Number(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASS,
+      database: process.env.DATABASE_NAME,
       entities: [UserEntity, EventEntity, SubscriptionEntity],
       synchronize: true,
     }),
