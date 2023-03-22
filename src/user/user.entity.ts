@@ -1,8 +1,7 @@
 import { Entity, CreateDateColumn, UpdateDateColumn, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 import { ObjectType, Field, HideField, ID } from '@nestjs/graphql'
-import { hashSync } from 'bcrypt';
-import { hashPasswordTransform } from 'src/utils/hashPasswordTransform';
+import { hashPasswordTransform } from '../utils/hashPasswordTransform';
 
 @ObjectType()
 @Entity()

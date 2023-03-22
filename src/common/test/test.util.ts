@@ -1,3 +1,4 @@
+import { UserEntity } from "../../user/user.entity";
 import { EventEntity } from "../../event/event.entity";
 
 export class TestUtil {
@@ -16,5 +17,17 @@ export class TestUtil {
         event.link = "https://event.com"
 
         return event;
+    }
+
+    static giveMeAValidUser(): UserEntity {
+        const user = new UserEntity()
+
+        user.name = "Test user";
+        user.email = "TestUser@Gmail.com"
+        user.password = "123testando",
+        user.createdAt = new Date()
+        user.updatedAt = new Date()
+
+        return user;
     }
 }
