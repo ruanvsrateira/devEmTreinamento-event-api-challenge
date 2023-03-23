@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { EventEntity } from "src/event/event.entity";
+import { EventEntity } from "../event/event.entity"
 import { Repository } from "typeorm";
 import { SubscriptionEntity } from "./subscription.entity";
 import { CreateSubscriptionInput } from "./subscription.input";
